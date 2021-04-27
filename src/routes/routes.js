@@ -1,10 +1,9 @@
 const { Router } = require('express');
 const { createFaqController } = require('../controllers/create-faq-controller');
+const { getFaqController } = require('../controllers/get-faq-controller');
 const router = Router();
 
-router.get('/', (req, res) => {
-    res.send('teste 2');
-})
+router.get('/:id', getFaqController)
 
 router.post('/create', createFaqController)
 
