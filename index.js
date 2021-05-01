@@ -5,8 +5,6 @@ const { router } = require('./src/routes/routes');
 
 const app = express();
 
-
-
 try {
     app.use(bodyParser.json())
     app.use(router)

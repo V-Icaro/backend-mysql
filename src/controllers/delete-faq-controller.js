@@ -1,15 +1,16 @@
 const { connection } = require('../db/db');
 
-async function createFaqController(req, res, next) {
+async function deleteFaqController(req, res, next) {
     try {
-        const { titulo, conteudo } = req.body;
+        const id = req.params.id;
         const conn = await connection
-        conn.query("INSERT INTO faqs (titulo, conteudo) VALUES (?,?)", [titulo, conteudo], (err, results) => {
+        conn.query("DELETE from faqs WHERE id=?", id, (err, results) => {
             if (err) throw err;
             console.log("Number of records inserted: " + results.affectedRows);
+            console.log(err)
 
             res.status(200).json({
-                message: "inserido com sucesso"
+                message: "Deletado com sucesso",
             })
         })
     } catch (error) {
@@ -21,4 +22,4 @@ async function createFaqController(req, res, next) {
 }
 
 
-module.exports = { createFaqController }
+module.exports = { deleteFaqController }

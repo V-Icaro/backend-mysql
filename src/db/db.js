@@ -6,19 +6,11 @@ const connection = mysql.createConnection({
     database: 'db'
 });
 
-function connectionDb() {
-    return new Promise((resolve, reject) => {
+connection.connect((err) => {
+    if (err) {
+        throw err;
+    }
+    console.log('MySql Connected...')
+})
 
-        connection.connect((err) => {
-
-            if (err) {
-                console.error('error connecting: ' + err.stack);
-                reject(err);
-            }
-
-            resolve(connection)
-        });
-    })
-}
-
-module.exports = { connectionDb }
+module.exports = { connection }

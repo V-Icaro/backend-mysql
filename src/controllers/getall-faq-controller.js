@@ -1,16 +1,13 @@
 const { connection } = require('../db/db');
 
-async function getFaqController(req, res, next) {
+async function getallFaqController(req, res, next) {
     console.log('entrou get')
     try {
-        const { id } = req.params;
         const conn = await connection
-
-        console.log(id)
-        conn.query("SELECT * FROM faqs WHERE id = ?", id, (err, results) => {
+        conn.query("SELECT * FROM faqs ", (err, results) => {
             if (err) throw err;
             res.status(200).json({
-                dados: results[0]
+                dados: results
             })
         })
     } catch (error) {
@@ -22,4 +19,4 @@ async function getFaqController(req, res, next) {
 }
 
 
-module.exports = { getFaqController }
+module.exports = { getallFaqController }
